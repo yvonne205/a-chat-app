@@ -46,3 +46,19 @@ int main(int argc, char *argv[])
     } 
     cout << "Error connecting to the server!" << endl;                     
 }
+cout < "Connected to the server!" <endl;
+int bytesRead, bytesWritten = 0;
+struct timeval start1, end1;
+gettimeofday(&start1, NULL);
+while (1)
+{
+    cout << ">";
+    string data;
+    getline(cin, data);
+    memset(&msg, 0, sizeof(msg)); //clear the buffer
+    bytesRead += recv(clientSd, (char *)&msg, sizeof(msg), 0);
+    
+}
+
+
+

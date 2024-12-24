@@ -56,9 +56,33 @@ while (1)
     string data;
     getline(cin, data);
     memset(&msg, 0, sizeof(msg)); //clear the buffer
-    bytesRead += recv(clientSd, (char *)&msg, sizeof(msg), 0);
-    
+    strcpy(msg, data.c_str());
+        if (data == "exit")
+        {
+            send(clientSd, (char *)&msg, strlen(msg), 0);
+            break;
+        }
+        bytesWritten += send(clientSd, (char *)&msg, strlen(msg), 0);
+        cout << "Awaiting server response..." << endl;
+        memset(&msg, 0, sizeof(msg)); // clear the buffer
+        bytesRead += recv(clientSd, (char *)&msg, sizeof(msg), 0);
+        if (!strcmp(msg, "exit"))
+        {
+            cout << "Server has quit the session" << endl;
+            break;
+        }
+        cout << "Server: " <,msg << endl;
 }
+gettiomeofday(&end1, NULL);
+close(clientSd);
+cout << "*******Session*******" <endl;
+cout << "Bytes written: " << bytesWritten << "Bytes read: " <<bytesRead << endl;
+cout << "Elapsed time: " << (end1.tv_sec)
+     << " secs" << endl;
+cout << "Connection closed" <<endl;
+return 0;
+
+
 
 
 

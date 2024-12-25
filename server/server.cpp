@@ -48,5 +48,28 @@ int main(int argc, char *argv[])
         cerr << "Error establishing the server socket" << endl;
         exit(0)
     }
+    //bind the socket to its local address
+    int bindStatus = bind(serverSd, (struct sockaddr*) &servAddr, 
+        sizeof(servAddr));
+    if(bindStatus < 0)
+    {
+        cerr << "Error binding socket to local address" << endl;
+        exit(0);
+    }
+    cout << "Waiting for a client to connect..." << endl;
+    //listen for up to 5 requests at a time
+    listen(serverSd, 5);
+    //receive a request from client using accept
+    //we need a new address to connect with the client
+    sockaddr_in newSockAddr;
+    socklen_t newSockAddrSize = sizeof(newSockAddr);
+    //accept, create a new socket descriptor to 
+    //handle the new connection with client
+    int newSd = accept(serverSd, (sockaddr *)&newSockAddr, &newSockAddrSize);
+    if(newSd < 0)
+    {
+        cerr << "Error accepting request from client!" << endl;
+        exit(1);
+    }
 
 }

@@ -96,5 +96,26 @@ int main(int argc, char *argv[])
         strcpy(msg, data.c_str());
         if(data == "exit")
         {
+            //send to the client that server has closed the connection
+            send(newSd, (char*)&msg, strlen(msg), 0);
+            break;
+        }
+         //send the message to client
+        bytesWritten += send(newSd, (char*)&msg, strlen(msg), 0);
+    }
+    //we need to close the socket descriptors after we're all done
+    gettimeofday(&end1, NULL);
+    close(newSd);
+    close(serverSd);
+    cout << "********Session********" << endl;
+    cout << "Bytes written: " << bytesWritten << " Bytes read: " << bytesRead << endl;
+    cout << "Elapsed time: " << (end1.tv_sec - start1.tv_sec) 
+        << " secs" << endl;
+    cout << "Connection closed..." << endl;
+    return 0;   
+}
+
+    
+    
 
 }

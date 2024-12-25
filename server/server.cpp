@@ -16,3 +16,37 @@
 using namespace std;
 
 //Server Side
+
+int main(int argc, char *argv[])
+{
+
+    //for the server, we only need to specify a port number
+    if(argc != 2)
+    {       You, 3 days ago * uncommited changes
+        cerr << "Usage: port" << endl;
+        exit(0)
+
+    }
+    //grab the port number
+    int port = atoi(argv[1]);
+    //buffer to send and receive messages with
+    char msg[1500];
+
+    //setup a socket and connection tools
+    sockaddr_in servAddr;
+    bzero((char*)&servAddr, sizeof(servAddr));
+    servAddr.sin_family = AF_INET;
+    servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    servAddr.sin_port = htons(port);
+
+
+    //open stream orientedsocket with internet address
+    //also keep track of the socket descriptor
+    int serverSd = socket(AF_INET, SOCK_STREAM, 0);
+    if(serverSd < 0)
+    {
+        cerr << "Error establishing the server socket" << endl;
+        exit(0)
+    }
+
+}

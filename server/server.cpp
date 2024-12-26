@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
         exit(0)
 
     }
+    
     //grab the port number
     int port = atoi(argv[1]);
     //buffer to send and receive messages with
@@ -114,8 +115,4 @@ int main(int argc, char *argv[])
     cout << "Connection closed..." << endl;
     return 0;   
 }
-
-    
-    
-
 }

@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     
     //grab the port number
     int port = atoi(argv[1]);
+
     //buffer to send and receive messages with
     char msg[1500];
 
@@ -58,6 +59,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
     cout << "Waiting for a client to connect..." << endl;
+    
     //listen for up to 5 requests at a time
     listen(serverSd, 5);
     //receive a request from client using accept

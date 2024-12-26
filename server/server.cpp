@@ -59,13 +59,15 @@ int main(int argc, char *argv[])
         exit(0);
     }
     cout << "Waiting for a client to connect..." << endl;
-    
+
     //listen for up to 5 requests at a time
     listen(serverSd, 5);
+
     //receive a request from client using accept
     //we need a new address to connect with the client
     sockaddr_in newSockAddr;
     socklen_t newSockAddrSize = sizeof(newSockAddr);
+
     //accept, create a new socket descriptor to 
     //handle the new connection with client
     int newSd = accept(serverSd, (sockaddr *)&newSockAddr, &newSockAddrSize);
@@ -106,6 +108,7 @@ int main(int argc, char *argv[])
          //send the message to client
         bytesWritten += send(newSd, (char*)&msg, strlen(msg), 0);
     }
+    
     //we need to close the socket descriptors after we're all done
     gettimeofday(&end1, NULL);
     close(newSd);

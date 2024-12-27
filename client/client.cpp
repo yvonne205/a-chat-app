@@ -20,14 +20,19 @@ using namespace std;
 //Client Side
 int main(int argc, char *argv[])
 {
+    
     //we need 2 things: ip address and port number, in that order
     if(argc != 3)
     {
         cerr << "Usage: ip address port" << endl; exit(0);   
-    }// grab the IP address and port number
+    }
+    
+    // grab the IP address and port number
     char *serverIp =argv[1]; int port = atoi(argv[2])
-//create a message buffer 
+    
+    //create a message buffer 
     char msg[1500]; 
+    
     //setup a socket and connection tools 
     struct hostent* host = gethostbyname(serverIp); 
     sockaddr_in sendSockAddr;   

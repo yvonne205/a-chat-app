@@ -105,6 +105,7 @@ int main(int argc, char *argv[])
             send(newSd, (char*)&msg, strlen(msg), 0);
             break;
         }
+        
          //send the message to client
         bytesWritten += send(newSd, (char*)&msg, strlen(msg), 0);
     }

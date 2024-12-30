@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
         cerr << "Error establishing the server socket" << endl;
         exit(0)
     }
+        
     //bind the socket to its local address
     int bindStatus = bind(serverSd, (struct sockaddr*) &servAddr, 
         sizeof(servAddr));
@@ -77,9 +78,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
     cout << "Connected with client!" << endl;
+        
     //lets keep track of the session time
     struct timeval start1, end1;
     gettimeofday(&start1, NULL);
+        
     //also keep track of the amount of data sent as well
     int bytesRead, bytesWritten = 0;
     while(1)
